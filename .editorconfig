@@ -1,0 +1,86 @@
+# EditorConfig is awesome: http://EditorConfig.org
+
+# top-most EditorConfig file
+root = true
+
+# Unix-style newlines with a newline ending every file
+[*]
+end_of_line = lf
+insert_final_newline = true
+charset = utf-8
+# Remove trailing whitespace to avoid diffs with a bunch of EOL changes
+trim_trailing_whitespace = true
+
+# CSS
+[*.css]
+indent_style = space
+indent_size = 2
+
+# SASS via *.scss files
+[*.scss]
+indent_style = space
+indent_size = 2
+
+# LESS via *.less files
+[*.less]
+indent_style = space
+indent_size = 2
+
+# HTML
+[*.html]
+indent_style = space
+indent_size = 4
+
+# XML or XLF or SVG
+[*.{xml,xlf,svg}]
+indent_style = space
+indent_size = 4
+
+# JavaScript
+[*.js]
+indent_style = space
+indent_size = 2
+
+# JSON
+[*.json]
+indent_style = space
+indent_size = 2
+
+# SQL
+[*.sql]
+indent_style = space
+indent_size = 2
+
+# PHP
+[*.php]
+indent_style = space
+indent_size = 4
+
+# YAML
+[*.{yml,yaml}]
+indent_style = space
+indent_size = 2
+
+# TypoScript
+[*.{ts,setup,constants,typoscript,tsconfig}]
+indent_style = space
+indent_size = 2
+
+[{setup.txt,constants.txt,ext_typoscript_setup.txt}]
+indent_style = space
+indent_size = 2
+
+# Shell
+[*.{sh,bash}]
+indent_style = space
+indent_size = 2
+
+# reStructuredText
+[{*.rst,*.rst.txt}]
+indent_style = space
+indent_size = 3
+
+# Markdown
+[*.md]
+indent_style = space
+indent_size = 4

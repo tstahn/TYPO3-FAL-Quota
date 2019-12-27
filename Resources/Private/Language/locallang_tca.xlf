@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file source-language="en" datatype="plaintext" original="EXT:fal_quota/Resources/Private/Language/locallang_tca.xlf" date="2019-12-24T20:00:00Z" product-name="fal_quota">
+        <header/>
+        <body>
+            <trans-unit id="sys_file_storage.soft_quota">
+                <source>Quota (in MB)</source>
+            </trans-unit>
+            <trans-unit id="sys_file_storage.hard_limit">
+                <source>Hard limit (in MB)</source>
+            </trans-unit>
+            <trans-unit id="sys_file_storage.current_usage">
+                <source>Current utilization (in MB)</source>
+            </trans-unit>
+            <trans-unit id="sys_file_storage.quota_warning_threshold">
+                <source>Threshold for warning mail (1-100%)</source>
+            </trans-unit>
+            <trans-unit id="sys_file_storage.quota_warning_recipients">
+                <source>Warning mail recipients (separate multiple with comma)</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

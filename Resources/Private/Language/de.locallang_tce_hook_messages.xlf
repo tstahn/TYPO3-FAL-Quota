@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2019-12-20T20:00:00Z">
+        <header/>
+        <body>
+            <trans-unit id="quotaSettingMismatch">
+                <target>Die Quota (%s) liegt über der Obergrenze (%s). Die Quota sollte kleiner oder gleich der Obergrenze sein.</target>
+            </trans-unit>
+            <trans-unit id="diskspaceWarning">
+                <target>Der verfügbare Speicherplatz (%s) is  kleiner als die Quota (%s) oder die Obergrenze (%s).</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

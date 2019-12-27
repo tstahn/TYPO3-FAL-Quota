@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.0" xmlns:t3="http://typo3.org/schemas/xliff">
+    <file t3:id="1576874068" source-language="en" datatype="plaintext" original="EXT:fal_quota/Resources/Private/Language/locallang_tabs.xlf" date="2019-12-24T20:00:00Z" product-name="fal_quota">
+        <header/>
+        <body>
+            <trans-unit id="tab.fal_quota" resname="fal_quota">
+                <source>Quota settings</source>
+            </trans-unit>
+            <trans-unit id="palette.quota_limits" resname="quota_limits">
+                <source>Quota limits</source>
+            </trans-unit>
+            <trans-unit id="palette.notification_settings" resname="notification_settings">
+                <source>Notification settings</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

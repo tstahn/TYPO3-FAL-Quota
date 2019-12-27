@@ -1,0 +1,24 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:core="http://typo3.org/ns/TYPO3/CMS/Core/ViewHelpers"
+    xmlns:be="http://typo3.org/ns/TYPO3/CMS/Backend/ViewHelpers"
+    data-namespace-typo3-fluid="true">
+
+<tr class="storage-row{f:if(condition: '{storage.over_threshold}', then: ' warning')} {f:if(condition: '{storage.over_quota}', then: ' danger')}">
+    <td>{storage.uid}</td>
+    <td>{storage.name}</td>
+    <td>{storage.driver}</td>
+    <td class="number">{storage.current_usage}</td>
+    <td class="number">{storage.current_threshold} %</td>
+    <td class="number">{storage.soft_quota}</td>
+    <td class="number">{storage.hard_limit}</td>
+    <td class="number">{storage.quota_warning_threshold} %</td>
+    <td>{storage.quota_warning_recipients}</td>
+    <td>
+        <a class="btn btn-default" href="{be:uri.editRecord(table: 'sys_file_storage', uid: '{storage.uid}')}">
+            <core:icon identifier="actions-open" />
+        </a>
+    </td>
+</tr>
+
+</html>

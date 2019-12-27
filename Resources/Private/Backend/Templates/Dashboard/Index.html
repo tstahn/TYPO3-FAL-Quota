@@ -1,0 +1,42 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:core="http://typo3.org/ns/TYPO3/CMS/Core/ViewHelpers"
+    xmlns:be="http://typo3.org/ns/TYPO3/CMS/Backend/ViewHelpers"
+    data-namespace-typo3-fluid="true">
+
+<f:layout name="Default"/>
+
+<f:section name="Header">
+    <h1>
+        {f:translate(key: '{localizationFile}:mlang_labels_tablabel')}
+    </h1>
+</f:section>
+
+<f:section name="Content">
+    <f:flashMessages/>
+
+    <div class="row">
+        <table class="table table-striped table-hover">
+            <thead>
+            <tr>
+                <th>{f:translate(key: '{localizationFile}:table.uid')}</th>
+                <th>{f:translate(key: '{localizationFile}:table.name')}</th>
+                <th>{f:translate(key: '{localizationFile}:table.driver')}</th>
+                <th class="number">{f:translate(key: '{localizationFile}:table.current_usage')}</th>
+                <th class="number">{f:translate(key: '{localizationFile}:table.current_threshold')}</th>
+                <th class="number">{f:translate(key: '{localizationFile}:table.soft_quota')}</th>
+                <th class="number">{f:translate(key: '{localizationFile}:table.hard_limit')}</th>
+                <th class="number">{f:translate(key: '{localizationFile}:table.quota_warning_threshold')}</th>
+                <th>{f:translate(key: '{localizationFile}:table.recipients')}</th>
+                <th>{f:translate(key: '{localizationFile}:table.actions')}</th>
+            </tr>
+            </thead>
+            <tbody>
+            <f:for as="storage" each="{storages}">
+                <f:render partial="Dashboard/StorageRow" arguments="{_all}"/>
+            </f:for>
+            </tbody>
+        </table>
+    </div>
+</f:section>
+</html>

@@ -1,0 +1,16 @@
+# Module configuration
+module.tx_falquota {
+  view {
+    layoutRootPaths {
+      10 = EXT:fal_quota/Resources/Private/Backend/Layouts/
+    }
+
+    templateRootPaths {
+      10 = EXT:fal_quota/Resources/Private/Backend/Templates/
+    }
+
+    partialRootPaths {
+      10 = EXT:fal_quota/Resources/Private/Backend/Partials/
+    }
+  }
+}

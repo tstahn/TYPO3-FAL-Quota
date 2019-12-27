@@ -1,0 +1,49 @@
+<project name="FALQUOTA-Integration" default="build">
+
+    <target name="clean">
+        <delete dir="${basedir}/.Build"/>
+    </target>
+
+    <target name="prepare">
+        <mkdir dir="${basedir}/.Build"/>
+        <mkdir dir="${basedir}/.Build/logs"/>
+        <mkdir dir="${basedir}/.Build/tests"/>
+        <mkdir dir="${basedir}/.Build/cpd"/>
+        <mkdir dir="${basedir}/.Build/codebrowser"/>
+        <mkdir dir="${basedir}/.Build/dependencies"/>
+        <mkdir dir="${basedir}/.Build/docblox"/>
+    </target>
+
+    <target name="php_cs_fixer" description="Find coding standard violations using PHP-CS-Fixer">
+        <exec executable="php-cs-fixer" failonerror="true">
+            <arg value="fix"/>
+            <arg value="--verbose"/>
+            <arg value="--dry-run"/>
+            <arg value="--using-cache=no"/>
+            <arg value="--diff"/>
+            <arg line="--diff-format udiff"/>
+            <arg line="--path-mode=intersection"/>
+            <arg value="--config=.php_cs.dist"/>
+            <arg path="${basedir}"/>
+        </exec>
+    </target>
+
+    <target name="php_lint" description="Find linting errors using PHP">
+        <apply executable="php" failonerror="true">
+            <arg value="-l"/>
+            <fileset dir="${basedir}">
+                <include name="**/*.php"/>
+                <exclude name="phpunit/**"/>
+                <exclude name="**/Build/**"/>
+                <exclude name="**/Tests/**"/>
+                <exclude name="**/lib/**"/>
+                <exclude name="**/Vendor/**"/>
+            </fileset>
+        </apply>
+    </target>
+
+    <target name="build" depends="clean,prepare"/>
+
+    <target name="lint" depends="php_lint,php_cs_fixer"/>
+
+</project>

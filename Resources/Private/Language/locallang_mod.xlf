@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file source-language="en" datatype="plaintext" original="EXT:fal_quota/Resources/Private/Language/locallang_mod.xlf" date="2019-12-24T20:00:00Z" product-name="fal_quota">
+        <header/>
+        <body>
+            <trans-unit id="mlang_tabs_tab">
+                <source>FAL Quota</source>
+            </trans-unit>
+            <trans-unit id="mlang_labels_tablabel">
+                <source>Overview of FAL Quotas</source>
+            </trans-unit>
+            <trans-unit id="mlang_labels_tabdescr">
+                <source>This module gives insights about usage and utilization of FAL storages</source>
+            </trans-unit>
+
+            <trans-unit id="table.uid">
+                <source>UID</source>
+            </trans-unit>
+            <trans-unit id="table.name">
+                <source>Name</source>
+            </trans-unit>
+            <trans-unit id="table.driver">
+                <source>FAL Driver</source>
+            </trans-unit>
+            <trans-unit id="table.current_usage">
+                <source>Current Storage taken</source>
+            </trans-unit>
+            <trans-unit id="table.current_threshold">
+                <source>Current Usage</source>
+            </trans-unit>
+            <trans-unit id="table.soft_quota">
+                <source>Quota</source>
+            </trans-unit>
+            <trans-unit id="table.hard_limit">
+                <source>Hard Limit</source>
+            </trans-unit>
+            <trans-unit id="table.quota_warning_threshold">
+                <source>Warning Threshold</source>
+            </trans-unit>
+            <trans-unit id="table.recipients">
+                <source>Recipients</source>
+            </trans-unit>
+            <trans-unit id="table.actions">
+                <source>Action</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

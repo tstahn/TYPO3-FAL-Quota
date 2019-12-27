@@ -1,0 +1,13 @@
+/.ddev
+/.env
+/.idea
+/.php_cs.cache
+/composer.lock
+/.sass-cache
+/.tmp
+/.unison.*
+/.Build/*
+.DS_Store
+*GENERATED*
+*.css.map
+*.js.map

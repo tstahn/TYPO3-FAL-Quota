@@ -1,0 +1,1 @@
+<INCLUDE_TYPOSCRIPT: source="FILE:EXT:fal_quota/Configuration/TypoScript/Setup.typoscript">

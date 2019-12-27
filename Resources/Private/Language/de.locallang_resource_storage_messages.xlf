@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2019-12-24T20:00:00Z">
+        <header/>
+        <body>
+            <trans-unit id="over_quota">
+                <target>Die Dateien in diesem Speicher belegen mehr Speicherplatz (%s MB) als die Quota (%s MB) erlaubt.</target>
+            </trans-unit>
+            <trans-unit id="result_will_exceed_quota">
+                <target>Die Aktion würde in diesem Speicher mehr Speicherplatz belegen (%s MB) als die Quota (%s MB) erlaubt.</target>
+            </trans-unit>
+            <trans-unit id="copy_folder_result_will_exceed_quota">
+                <target>Die Aktion würde im Ziel-Speicher mehr Speicherplatz belegen als die Quota (%s MB) erlaubt.</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

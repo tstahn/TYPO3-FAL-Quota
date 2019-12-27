@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file source-language="en" datatype="plaintext" original="EXT:fal_quota/Resources/Private/Language/tce_hook_messages.xlf" date="2019-12-20T20:00:00Z" product-name="fal_quota">
+        <header/>
+        <body>
+            <trans-unit id="quotaSettingMismatch">
+                <source>Quota (%s) is larger than hard limit (%s). Quota value should be smaller or equal to the hard limit value.</source>
+            </trans-unit>
+            <trans-unit id="diskspaceWarning">
+                <source>Available diskspace (%s) is smaller than Quota (%s) or hard limit (%s).</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

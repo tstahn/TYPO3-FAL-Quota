@@ -1,0 +1,39 @@
+{
+  "name": "mehrwert/fal-quota",
+  "description": "FAL Quota for TYPO3",
+  "type": "typo3-cms-extension",
+  "license": "GPL-3.0-or-later",
+  "prefer-stable": true,
+  "authors": [
+    {
+      "name": "mehrwert intermediale kommunikation GmbH",
+      "email": "typo3@mehrwert.de",
+      "role": "Developer"
+    }
+  ],
+  "homepage": "https://extensions.typo3.org/extension/fal_quota/",
+  "support": {
+    "issues": "https://github.com/mehrwert/TYPO3-FAL-Quota/issues",
+    "source": "https://github.com/mehrwert/TYPO3-FAL-Quota"
+  },
+  "require": {
+    "php": "^7.2",
+    "typo3/cms-backend": "^9.5.0",
+    "typo3/cms-core": "^9.5.0",
+    "typo3/cms-extbase": "^9.5.0",
+    "typo3/cms-extensionmanager": "^9.5.0",
+    "typo3/cms-fluid": "^9.5.0"
+  },
+  "require-dev": {
+    "friendsofphp/php-cs-fixer": "^2.14",
+    "roave/security-advisories": "dev-master"
+  },
+  "suggest": {
+    "ext-intl": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Mehrwert\\FalQuota\\": "Classes/"
+    }
+  }
+}

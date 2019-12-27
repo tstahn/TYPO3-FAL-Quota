@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file source-language="en" datatype="plaintext" original="EXT:fal_quota/Resources/Private/Language/locallang_resource_storage_messages.xlf" date="2019-12-24T20:00:00Z" product-name="fal_quota">
+        <header/>
+        <body>
+            <trans-unit id="over_quota">
+                <source>The files in this storage (%s MB) exceeded the Quota limit (%s MB).</source>
+            </trans-unit>
+            <trans-unit id="result_will_exceed_quota">
+                <source>The desired action would use more space in this storage (%s MB) as the Quota limit (%s MB) permits.</source>
+            </trans-unit>
+            <trans-unit id="copy_folder_result_will_exceed_quota">
+                <source>The desired action would use more space in the target storage as the Quota limit (%s MB) permits.</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
