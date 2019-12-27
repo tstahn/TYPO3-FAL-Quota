@@ -2,10 +2,10 @@
 
 This extensions provides a virtual Quota for FAL using Signals/Slots if the underlying file system does not support
 or cannot provide one. A CLI command updates the quota usage periodically and sends notification mails to recipients
-defined per storage. 
+defined per storage.
 
 ## Features
-* Per storage definition of soft quota and hard limit, notification threshold and email recipients 
+* Per storage definition of soft quota and hard limit, notification threshold and email recipients
 * Symfony Command task to update quotas and send notification mails
 
 ## Installation
@@ -28,4 +28,7 @@ Look at the [Issues](https://github.com/mehrwert/TYPO3-FAL-Quota/issues)
 for what has been planned to be implemented in the (near) future.
 
 ## Credits
+This extension was created by [Andreas Beutel](https://github.com/abeutel) in 2019 for
+[mehrwert intermediale kommunikation GmbH](https://www.mehrwert.de).
+
 Thanks to all contributors and everybody providing feedback.

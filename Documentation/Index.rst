@@ -10,17 +10,17 @@ FAL Quota Extension for TYPO3
   |release|
 
 :Author:
-  mehrwert intermediale kommunikation GmbH <typo3@mehrwert.de>
+  Andreas Beutel <typo3@mehrwert.de>
 
 :Description:
   Apply quota limits to FAL storages (Local driver) where the underlying filesystem
   does not support individual quotas or all storages reside on the same filesystem.
 
 :Keywords:
-  FAL, Quota, Diskquota, Diskspace, Filesystem
+  FAL, File Abstraction Layer, Quota, Diskquota, Disk-quota, Diskspace, Filesystem, Storage
 
 :Copyright:
-  2019
+  2019 by mehrwert intermediale kommunikation GmbH
 
 :Language:
   en
