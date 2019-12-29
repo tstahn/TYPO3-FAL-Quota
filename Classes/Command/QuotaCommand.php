@@ -19,6 +19,7 @@ use TYPO3\CMS\Core\Mail\MailMessage;
 use TYPO3\CMS\Core\Resource\ResourceStorage;
 use TYPO3\CMS\Core\Resource\StorageRepository;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Utility\VersionNumberUtility;
 
 /**
  * Quota notification and update class
@@ -118,33 +119,74 @@ final class QuotaCommand extends Command
     private function sendNotification(ResourceStorage $storage, array $quotaConfiguration, int $currentThreshold): int
     {
         $hasRecipients = false;
-        $mailMessage = GeneralUtility::makeInstance(MailMessage::class);
         $recipients = GeneralUtility::trimExplode(',', $quotaConfiguration['quota_warning_recipients'], true);
+        $validRecipientAddresses = [];
+
         foreach ($recipients as $recipient) {
             if (GeneralUtility::validEmail($recipient)) {
-                $mailMessage->addTo($recipient);
+                $validRecipientAddresses[] = $recipient;
                 $hasRecipients = true;
             }
         }
-        $senderEmailAddress = !empty($GLOBALS['TYPO3_CONF_VARS']['MAIL']['defaultMailFromAddress'])
-            ? $GLOBALS['TYPO3_CONF_VARS']['MAIL']['defaultMailFromAddress']
-            : 'no-reply@example.com';
-        $senderEmailName = !empty($GLOBALS['TYPO3_CONF_VARS']['MAIL']['defaultMailFromName'])
-            ? $GLOBALS['TYPO3_CONF_VARS']['MAIL']['defaultMailFromName']
-            : 'TYPO3 CMS';
 
         if ($hasRecipients === true) {
-            return $mailMessage->setSubject('Warning: Storage »' . $storage->getName() . '« (UID: '
+            $senderEmailAddress = !empty($GLOBALS['TYPO3_CONF_VARS']['MAIL']['defaultMailFromAddress'])
+                ? $GLOBALS['TYPO3_CONF_VARS']['MAIL']['defaultMailFromAddress']
+                : 'no-reply@example.com';
+            $senderEmailName = !empty($GLOBALS['TYPO3_CONF_VARS']['MAIL']['defaultMailFromName'])
+                ? $GLOBALS['TYPO3_CONF_VARS']['MAIL']['defaultMailFromName']
+                : 'TYPO3 CMS';
+
+            $subject = 'Warning: Storage »' . $storage->getName() . '« (UID: '
                 . $storage->getUid() . ') approaching quota limit in \''
-                . $GLOBALS['TYPO3_CONF_VARS']['SYS']['sitename'] . '\'')
+                . $GLOBALS['TYPO3_CONF_VARS']['SYS']['sitename'] . '\'';
+            $body = 'Warning: Storage »' . $storage->getName() . '« (UID: ' . $storage->getUid()
+                . ') is approaching the configured quota limit of ' . QuotaUtility::numberFormat($quotaConfiguration['soft_quota'], 'MB')
+                . ' in \'' . $GLOBALS['TYPO3_CONF_VARS']['SYS']['sitename'] . '\' currently using '
+                . QuotaUtility::numberFormat($quotaConfiguration['current_usage'], 'MB') . ' (' . $currentThreshold . ' %) of allocated storage.';
+
+            // v10: Use Symfony Mail compatible method
+            if (VersionNumberUtility::convertVersionNumberToInteger(TYPO3_version) >= 10000000) {
+                return $this->sendNotificationWithSymfonyMail($subject, $senderEmailAddress, $senderEmailName, $body, $validRecipientAddresses) ? 1 : 0;
+            }
+            // v9: Use SwiftMailer
+            $mailMessage = GeneralUtility::makeInstance(MailMessage::class);
+            foreach ($validRecipientAddresses as $recipient) {
+                $mailMessage->addTo($recipient);
+            }
+
+            return $mailMessage
+                ->setSubject($subject)
                 ->addFrom($senderEmailAddress, $senderEmailName)
-                ->setBody('Warning: Storage »' . $storage->getName() . '« (UID: ' . $storage->getUid()
-                    . ') is approaching the configured quota limit of ' . QuotaUtility::numberFormat($quotaConfiguration['soft_quota'], 'MB')
-                    . ' in \'' . $GLOBALS['TYPO3_CONF_VARS']['SYS']['sitename'] . '\' currently using '
-                    . QuotaUtility::numberFormat($quotaConfiguration['current_usage'], 'MB') . ' (' . $currentThreshold . ' %) of allocated storage.')
+                ->setBody($body)
                 ->send();
         }
 
         return 0;
+    }
+
+    /**
+     * Use Symfony Mail compatible MailMessage calls for TYPO3 >= v10
+     *
+     * @param string $subject
+     * @param string $senderEmailAddress
+     * @param string $senderEmailName
+     * @param string $body
+     * @param array $recipients
+     * @return bool
+     * @since 1.1.0
+     */
+    private function sendNotificationWithSymfonyMail($subject, $senderEmailAddress, $senderEmailName, $body, $recipients): bool
+    {
+        $mailMessage = GeneralUtility::makeInstance(MailMessage::class);
+        foreach ($recipients as $recipient) {
+            $mailMessage->to($recipient);
+        }
+
+        return $mailMessage
+            ->subject($subject)
+            ->from(new \Symfony\Component\Mime\Address($senderEmailAddress, $senderEmailName))
+            ->text($body)
+            ->send();
     }
 }

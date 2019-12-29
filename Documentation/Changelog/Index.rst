@@ -20,6 +20,14 @@ The following is an overview of the changes in this extension. For more details 
       Release Description
 
  - :Version:
+      1.1.0
+   :Date:
+      2019-12-29
+   :Changes:
+
+      * [FEATURE] Compatibility with TYPO3 CMS v10
+
+ - :Version:
       1.0.0
    :Date:
       2019-12-27
