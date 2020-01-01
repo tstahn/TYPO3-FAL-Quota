@@ -2,3 +2,40 @@ th.number,
 td.number {
   text-align: right;
 }
+
+th.col-center,
+td.col-center {
+  text-align: center;
+}
+
+.pie,
+.pie-exceeded-quota {
+  width: 50px;
+  height: 50px;
+  display: inline-block;
+  margin: 10px;
+  transform: rotate(-90deg);
+}
+
+svg {
+  background: #ededed;
+  border-radius: 50%;
+  border: 1px solid #c6c6c6;
+}
+
+circle {
+  fill: #ededed;
+  stroke: #a5cb50;
+  stroke-width: 32;
+  border: 1px solid #c6c6c6;
+}
+
+circle.exceeded-quota {
+  stroke: #c83333;
+}
+
+@keyframes grow { to { stroke-dasharray: 50 50 } }
+
+.pie.animated circle {
+  animation: grow 2s infinite linear;
+}

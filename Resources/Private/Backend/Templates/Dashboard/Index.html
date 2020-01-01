@@ -23,7 +23,7 @@
                 <th>{f:translate(key: '{localizationFile}:table.name')}</th>
                 <th>{f:translate(key: '{localizationFile}:table.driver')}</th>
                 <th class="number">{f:translate(key: '{localizationFile}:table.current_usage')}</th>
-                <th class="number">{f:translate(key: '{localizationFile}:table.current_threshold')}</th>
+                <th class="col-center">{f:translate(key: '{localizationFile}:table.current_threshold')}</th>
                 <th class="number">{f:translate(key: '{localizationFile}:table.soft_quota')}</th>
                 <th class="number">{f:translate(key: '{localizationFile}:table.hard_limit')}</th>
                 <th class="number">{f:translate(key: '{localizationFile}:table.quota_warning_threshold')}</th>
@@ -38,5 +38,47 @@
             </tbody>
         </table>
     </div>
+
+    <script>
+        // Create the element iterator
+        function $$(selector, context) {
+            context = context || document;
+            const elements = context.querySelectorAll(selector);
+            return Array.prototype.slice.call(elements);
+        }
+        // Create the Pie Elements (SVG and Circle)
+        function createElements(pie, additionalClass = '') {
+            const p = parseFloat(pie.textContent);
+            const NS = "http://www.w3.org/2000/svg";
+            const svg = document.createElementNS(NS, "svg");
+            const circle = document.createElementNS(NS, "circle");
+            const title = document.createElementNS(NS, "title");
+
+            circle.setAttribute("r", 16);
+            circle.setAttribute("cx", 16);
+            circle.setAttribute("cy", 16);
+            circle.setAttribute("stroke-dasharray", p + " 100");
+
+            svg.setAttribute("viewBox", "0 0 32 32");
+            if (additionalClass !== '') {
+                circle.setAttribute("class", additionalClass);
+                svg.setAttribute("class", additionalClass);
+            }
+            title.textContent = pie.textContent;
+            pie.textContent = '';
+            svg.appendChild(title);
+            svg.appendChild(circle);
+            pie.appendChild(svg);
+        }
+        // Iterate all storage elements
+        $$('.pie').forEach(function(pie) {
+            createElements(pie);
+        });
+        // Iterate all storage elements w/ exceeded quota threshold
+        $$('.pie-exceeded-quota').forEach(function(pie) {
+            createElements(pie, 'exceeded-quota');
+        });
+    </script>
+
 </f:section>
 </html>

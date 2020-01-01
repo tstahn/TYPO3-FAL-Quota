@@ -20,6 +20,14 @@ The following is an overview of the changes in this extension. For more details 
       Release Description
 
  - :Version:
+      1.2.0
+   :Date:
+      2020-01-02
+   :Changes:
+
+      * [FEATURE] Add quota utilization with pie charts in storage list view
+
+ - :Version:
       1.1.0
    :Date:
       2019-12-29

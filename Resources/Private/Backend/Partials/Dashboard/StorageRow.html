@@ -9,7 +9,10 @@
     <td>{storage.name}</td>
     <td>{storage.driver}</td>
     <td class="number">{storage.current_usage}</td>
-    <td class="number">{storage.current_threshold} %</td>
+    <td class="pie-chart col-center">
+        <div class="pie{f:if(condition: '{storage.over_threshold}', then: '-exceeded-quota')}"><f:format.number decimals="0">{storage.current_threshold}</f:format.number>%</div><br/>
+        {storage.current_threshold} %
+    </td>
     <td class="number">{storage.soft_quota}</td>
     <td class="number">{storage.hard_limit}</td>
     <td class="number">{storage.quota_warning_threshold} %</td>
