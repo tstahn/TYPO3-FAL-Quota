@@ -11,6 +11,7 @@ namespace Mehrwert\FalQuota\Slot;
 
 use InvalidArgumentException;
 use Mehrwert\FalQuota\Utility\QuotaUtility;
+use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Exception;
 use TYPO3\CMS\Core\Localization\LanguageService;
 use TYPO3\CMS\Core\Messaging\FlashMessage;
@@ -277,7 +278,7 @@ abstract class AbstractResourceStorageSlot
      */
     protected function addMessageToFlashMessageQueue($message, $severity = FlashMessage::ERROR): void
     {
-        if (TYPO3_MODE !== 'BE') {
+        if (TYPO3_MODE !== 'BE' || Environment::isCli()) {
             return;
         }
         $flashMessage = GeneralUtility::makeInstance(
