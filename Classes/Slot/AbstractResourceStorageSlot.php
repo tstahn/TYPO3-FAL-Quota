@@ -160,9 +160,9 @@ abstract class AbstractResourceStorageSlot
         $copiedFileSize = $file->getSize() / 1024 / 1024;
         $storageDetails = GeneralUtility::makeInstance(QuotaUtility::class)->getStorageDetails($targetFolder->getStorage()->getUid());
         // Estimate new usage
-        $estimatedUsage = $storageDetails['current_usage'] + $copiedFileSize;
+        $estimatedUsage = $storageDetails['current_usage_raw'] + $copiedFileSize;
         // Result would exceed quota
-        if ($estimatedUsage >= $storageDetails['soft_quota']) {
+        if ($estimatedUsage >= $storageDetails['soft_quota_raw']) {
             $message = $this->getLocalizedMessage(
                 'result_will_exceed_quota',
                 [
