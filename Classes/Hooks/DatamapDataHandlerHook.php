@@ -57,15 +57,7 @@ class DatamapDataHandlerHook
                     QuotaUtility::numberFormat($hardLimit, 'MB'),
                 ]
             );
-            $tceMain->log(
-                'sys_file_storage',
-                $storageId,
-                $storageId > 0 ? 2 : 1,
-                0,
-                1,
-                $message,
-                1577351044
-            );
+            $this->logStorageError($tceMain, $storageId, $message);
         }
         if ($storageId > 0) {
             $availableSize = GeneralUtility::makeInstance(QuotaUtility::class)->getAvailableSpaceOnStorageOnDevice($storageId);
@@ -81,18 +73,30 @@ class DatamapDataHandlerHook
                             QuotaUtility::numberFormat($hardLimit, 'MB'),
                         ]
                     );
-                    $tceMain->log(
-                        'sys_file_storage',
-                        $storageId,
-                        (int)$storageId > 0 ? 2 : 1,
-                        0,
-                        1,
-                        $message,
-                        1577351045
-                    );
+                    $this->logStorageError($tceMain, $storageId, $message);
                 }
             }
         }
+    }
+
+    /**
+     * Log storage errors
+     *
+     * @param DataHandler $tceMain
+     * @param int $storageId
+     * @param string $message
+     */
+    private function logStorageError(DataHandler $tceMain, int $storageId, string $message): void
+    {
+        $tceMain->log(
+            'sys_file_storage',
+            $storageId,
+            $storageId > 0 ? 2 : 1,
+            0,
+            1,
+            $message,
+            0
+        );
     }
 
     /**
