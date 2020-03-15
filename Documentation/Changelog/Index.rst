@@ -20,6 +20,38 @@ The following is an overview of the changes in this extension. For more details 
       Release Description
 
  - :Version:
+      1.3.0
+   :Date:
+      2020-03-15
+   :Changes:
+
+      * [FEATURE] Compatibility with TYPO3 CMS v10.4
+
+ - :Version:
+      1.2.3
+   :Date:
+      2020-02-21
+   :Changes:
+
+      * [BUGFIX] Use proper TCEmain log parameters and extracts logging into a separat method
+
+- :Version:
+      1.2.2
+   :Date:
+      2020-01-22
+   :Changes:
+
+      * [BUGFIX] Use raw quota values to fix a bug with quota calculation
+
+- :Version:
+      1.2.1
+   :Date:
+      2020-01-21
+   :Changes:
+
+      * [BUGFIX] Do not use flash messages in CLI mode
+
+- :Version:
       1.2.0
    :Date:
       2020-01-02
