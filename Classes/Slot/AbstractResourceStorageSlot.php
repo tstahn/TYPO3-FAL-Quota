@@ -98,12 +98,11 @@ abstract class AbstractResourceStorageSlot
     protected function preEstimateUsageAfterCopyFolderCommand(Folder $folder, Folder $targetFolder, $code): void
     {
         $quotaUtility = GeneralUtility::makeInstance(QuotaUtility::class);
-        // Use MB as unit for all numeric operations
         $storageDetails = $quotaUtility->getStorageDetails($targetFolder->getStorage()->getUid());
         // Check if quota has been set
-        if ($storageDetails['soft_quota'] > 0) {
-            $folderSize = $quotaUtility->getFolderSize($folder, $storageDetails['current_usage_raw'] * 1024 * 1024);
-            if ($folderSize > $storageDetails['current_usage_raw'] * 1024 * 1024) {
+        if ($storageDetails['soft_quota_raw'] > 0) {
+            $folderSize = $quotaUtility->getFolderSize($folder, $storageDetails['current_usage_raw']);
+            if ($folderSize > $storageDetails['current_usage_raw']) {
                 $message = $this->getLocalizedMessage(
                     'copy_folder_result_will_exceed_quota',
                     [
@@ -125,19 +124,18 @@ abstract class AbstractResourceStorageSlot
      */
     protected function preEstimateUsageAfterSetContentCommand(FileInterface $file, $content, $code): void
     {
-        // Use MB as unit for all numeric operations
-        $contentSize = strlen($content) / 1024 / 1024;
+        $contentSize = strlen($content);
         $storageDetails = GeneralUtility::makeInstance(QuotaUtility::class)->getStorageDetails($file->getStorage()->getUid());
         // Check if quota has been set
-        if ($storageDetails['soft_quota'] > 0) {
+        if ($storageDetails['soft_quota_raw'] > 0) {
             // Estimate new usage
-            $estimatedUsage = $storageDetails['current_usage'] + $contentSize;
+            $estimatedUsage = $storageDetails['current_usage_raw'] + $contentSize;
             // Result would exceed quota
-            if ($estimatedUsage >= $storageDetails['soft_quota']) {
+            if ($estimatedUsage >= $storageDetails['soft_quota_raw']) {
                 $message = $this->getLocalizedMessage(
                     'result_will_exceed_quota',
                     [
-                        number_format($estimatedUsage, 2, ',', '.'),
+                        number_format($estimatedUsage / 1024 / 1024, 2, ',', '.'),
                         $storageDetails['soft_quota'],
                     ]
                 );
@@ -156,8 +154,7 @@ abstract class AbstractResourceStorageSlot
      */
     protected function preEstimateUsageAfterCopyCommand(FileInterface $file, Folder $targetFolder, $code): void
     {
-        // Use MB as unit for all numeric operations
-        $copiedFileSize = $file->getSize() / 1024 / 1024;
+        $copiedFileSize = $file->getSize();
         $storageDetails = GeneralUtility::makeInstance(QuotaUtility::class)->getStorageDetails($targetFolder->getStorage()->getUid());
         // Estimate new usage
         $estimatedUsage = $storageDetails['current_usage_raw'] + $copiedFileSize;
@@ -166,7 +163,7 @@ abstract class AbstractResourceStorageSlot
             $message = $this->getLocalizedMessage(
                 'result_will_exceed_quota',
                 [
-                    number_format($estimatedUsage, 2, ',', '.'),
+                    number_format($estimatedUsage / 1024 / 1024, 2, ',', '.'),
                     $storageDetails['soft_quota'],
                 ]
             );
@@ -188,9 +185,9 @@ abstract class AbstractResourceStorageSlot
         $movedFileSize = $file->getSize();
         $storageDetails = GeneralUtility::makeInstance(QuotaUtility::class)->getStorageDetails($targetFolder->getStorage()->getUid());
         // Check if quota has been set
-        if ($storageDetails['soft_quota'] > 0) {
+        if ($storageDetails['soft_quota_raw'] > 0) {
             // Estimate new usage
-            $estimatedUsage = $storageDetails['current_usage_raw'] * 1024 * 1024 + $movedFileSize;
+            $estimatedUsage = $storageDetails['current_usage_raw'] + $movedFileSize;
             // Result would exceed quota
             if ($estimatedUsage >= $storageDetails['soft_quota_raw']) {
                 $message = $this->getLocalizedMessage(
@@ -216,20 +213,19 @@ abstract class AbstractResourceStorageSlot
     protected function preEstimateUsageAfterReplaceCommand(FileInterface $file, $localFilePath, $code): void
     {
         if (is_file($localFilePath)) {
-            // Use MB as unit for all numeric operations
-            $newFileSize = filesize($localFilePath) / 1024 / 1024;
-            $currentFileSize = $file->getSize() / 1024 / 1024;
+            $newFileSize = filesize($localFilePath);
+            $currentFileSize = $file->getSize();
             $storageDetails = GeneralUtility::makeInstance(QuotaUtility::class)->getStorageDetails($file->getStorage()->getUid());
             // Check if quota has been set
-            if ($storageDetails['soft_quota'] > 0) {
+            if ($storageDetails['soft_quota_raw'] > 0) {
                 // Estimate new usage
-                $estimatedUsage = ($storageDetails['current_usage'] - $currentFileSize) + $newFileSize;
+                $estimatedUsage = ($storageDetails['current_usage_raw'] - $currentFileSize) + $newFileSize;
                 // Result would exceed quota
-                if ($estimatedUsage >= $storageDetails['soft_quota']) {
+                if ($estimatedUsage >= $storageDetails['soft_quota_raw']) {
                     $message = $this->getLocalizedMessage(
                         'result_will_exceed_quota',
                         [
-                            number_format($estimatedUsage, 2, ',', '.'),
+                            number_format($estimatedUsage / 1024 / 1024, 2, ',', '.'),
                             $storageDetails['soft_quota'],
                         ]
                     );
