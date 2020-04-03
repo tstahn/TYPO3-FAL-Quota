@@ -4,13 +4,13 @@
         <header/>
         <body>
             <trans-unit id="over_quota">
-                <target>Die Dateien in diesem Speicher belegen mehr Speicherplatz (%s MB) als die Quota (%s MB) erlaubt.</target>
+                <target>Die Dateien in diesem Speicher belegen mehr Speicherplatz (%s) als die Quota (%s) erlaubt.</target>
             </trans-unit>
             <trans-unit id="result_will_exceed_quota">
-                <target>Die Aktion würde in diesem Speicher mehr Speicherplatz belegen (%s MB) als die Quota (%s MB) erlaubt.</target>
+                <target>Die Aktion würde in diesem Speicher mehr Speicherplatz belegen (%s) als die Quota (%s) erlaubt.</target>
             </trans-unit>
             <trans-unit id="copy_folder_result_will_exceed_quota">
-                <target>Die Aktion würde im Ziel-Speicher mehr Speicherplatz belegen als die Quota (%s MB) erlaubt.</target>
+                <target>Die Aktion würde im Ziel-Speicher mehr Speicherplatz belegen als die Quota (%s) erlaubt.</target>
             </trans-unit>
         </body>
     </file>

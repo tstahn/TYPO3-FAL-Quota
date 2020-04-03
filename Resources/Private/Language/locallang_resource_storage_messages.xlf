@@ -4,13 +4,13 @@
         <header/>
         <body>
             <trans-unit id="over_quota">
-                <source>The files in this storage (%s MB) exceeded the Quota limit (%s MB).</source>
+                <source>The files in this storage (%s) exceeded the Quota limit (%s).</source>
             </trans-unit>
             <trans-unit id="result_will_exceed_quota">
-                <source>The desired action would use more space in this storage (%s MB) as the Quota limit (%s MB) permits.</source>
+                <source>The desired action would use more space in this storage (%s) as the Quota limit (%s) permits.</source>
             </trans-unit>
             <trans-unit id="copy_folder_result_will_exceed_quota">
-                <source>The desired action would use more space in the target storage as the Quota limit (%s MB) permits.</source>
+                <source>The desired action would use more space in the target storage as the Quota limit (%s) permits.</source>
             </trans-unit>
         </body>
     </file>
