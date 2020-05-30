@@ -12,7 +12,6 @@ Quota configuration is done per storage.
 
 .. figure:: ../Images/ExampleStorage.png
    :class: with-shadow
-   :scale: 50
    :alt: Example storage with Quota Settings tab
 
    Example storage with »Quota Settings« tab active
@@ -25,7 +24,6 @@ To enable Quotas for a storage, you must set up a quota [1], a hard limit [2] an
 
 .. figure:: ../Images/ExampleQuotaSettings.png
    :class: with-shadow
-   :scale: 50
    :alt: Example quota configuration for storage
 
    Example quota configuration for storage with 10 MB quota, hard limit of 15 MB and a warning threshold of 75% (of the

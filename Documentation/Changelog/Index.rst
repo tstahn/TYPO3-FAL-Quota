@@ -20,6 +20,13 @@ The following is an overview of the changes in this extension. For more details 
       Release Description
 
  - :Version:
+      1.3.1
+   :Date:
+      2020-04-03
+   :Changes:
+      * [BUGFIX] Quota calculation and evaluation fix
+
+ - :Version:
       1.3.0
    :Date:
       2020-03-15
@@ -35,7 +42,7 @@ The following is an overview of the changes in this extension. For more details 
 
       * [BUGFIX] Use proper TCEmain log parameters and extracts logging into a separat method
 
-- :Version:
+ - :Version:
       1.2.2
    :Date:
       2020-01-22
@@ -43,7 +50,7 @@ The following is an overview of the changes in this extension. For more details 
 
       * [BUGFIX] Use raw quota values to fix a bug with quota calculation
 
-- :Version:
+ - :Version:
       1.2.1
    :Date:
       2020-01-21
@@ -51,7 +58,7 @@ The following is an overview of the changes in this extension. For more details 
 
       * [BUGFIX] Do not use flash messages in CLI mode
 
-- :Version:
+ - :Version:
       1.2.0
    :Date:
       2020-01-02

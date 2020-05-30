@@ -18,7 +18,6 @@ in the list view but without the Scheduler task (or a manual update via CLI) wit
 
 .. figure:: ../Images/StorageListIQuotaOverview.png
    :class: with-shadow
-   :scale: 50
    :alt: Quota settings for storage in list view
 
    Quota settings for storage in list view
@@ -29,7 +28,6 @@ a red background if the quota limit has been reached/exceeded.
 
 .. figure:: ../Images/StorageListIQuotaOverviewWithWarnings.png
    :class: with-shadow
-   :scale: 50
    :alt: Quota settings for storage in list view with warnings
 
    Quota settings for storage in list view with warnings
@@ -50,7 +48,6 @@ Symfony command :guilabel:`fal_quota:quota:update: Update Quota Statistics for s
 
 .. figure:: ../Images/SchedulerTask.png
    :class: with-shadow
-   :scale: 50
    :alt: Scheduler Task for Quota settings
 
    Quota settings for storage in list view with warnings
@@ -83,7 +80,6 @@ The email notifications is currently very basic and just sends an informal mail 
 
 .. figure:: ../Images/ExampleWarningMails.png
    :class: with-shadow
-   :scale: 50
    :alt: Example quota warning mails
 
    Example quota warning mails

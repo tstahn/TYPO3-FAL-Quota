@@ -24,7 +24,6 @@ the :guilabel:`ADMIN TOOLS` section [1]:
 
 .. figure:: ../Images/BackendModule.png
    :class: with-shadow
-   :scale: 50
    :alt: Backend module
 
    Default backend module for TYPO3 System Maintainers

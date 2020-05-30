@@ -18,7 +18,6 @@ Warnings are issued as flash messages and shown in the :guilabel:`FILE  > Fileli
 
 .. figure:: ../Images/FalActionErrorExample.png
    :class: with-shadow
-   :scale: 50
    :alt: Quota warning in the File List Backend module
 
    Quota warning in the File List Backend module
