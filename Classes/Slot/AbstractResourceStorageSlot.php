@@ -156,19 +156,22 @@ abstract class AbstractResourceStorageSlot
     {
         $copiedFileSize = $file->getSize();
         $storageDetails = GeneralUtility::makeInstance(QuotaUtility::class)->getStorageDetails($targetFolder->getStorage()->getUid());
-        // Estimate new usage
-        $estimatedUsage = $storageDetails['current_usage_raw'] + $copiedFileSize;
-        // Result would exceed quota
-        if ($estimatedUsage >= $storageDetails['soft_quota_raw']) {
-            $message = $this->getLocalizedMessage(
-                'result_will_exceed_quota',
-                [
-                    number_format($estimatedUsage / 1024 / 1024, 2, ',', '.'),
-                    $storageDetails['soft_quota'],
-                ]
-            );
-            $this->addMessageToFlashMessageQueue($message);
-            throw new ResourceStorageException($message, $code);
+        // Check if quota has been set
+        if ($storageDetails['soft_quota_raw'] > 0) {
+            // Estimate new usage
+            $estimatedUsage = $storageDetails['current_usage_raw'] + $copiedFileSize;
+            // Result would exceed quota
+            if ($estimatedUsage >= $storageDetails['soft_quota_raw']) {
+                $message = $this->getLocalizedMessage(
+                    'result_will_exceed_quota',
+                    [
+                        number_format($estimatedUsage / 1024 / 1024, 2, ',', '.'),
+                        $storageDetails['soft_quota'],
+                    ]
+                );
+                $this->addMessageToFlashMessageQueue($message);
+                throw new ResourceStorageException($message, $code);
+            }
         }
     }
 
