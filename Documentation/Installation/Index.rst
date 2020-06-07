@@ -19,14 +19,14 @@ Backend Module
 ==============
 
 The extension adds some fields to the `sys_file_storage` database table to store quota configuration per storage. After
-the extension has been successfully installed, `TYPO3 System Maintainers` get access to a new backend module in
-the :guilabel:`ADMIN TOOLS` section [1]:
+the extension has been successfully installed, access to a new backend module `FAL Quota` in the :guilabel:`FILE` section [1] may
+be enabled for Backend Users and Groups via TYPO3 module configuration:
 
 .. figure:: ../Images/BackendModule.png
    :class: with-shadow
    :alt: Backend module
 
-   Default backend module for TYPO3 System Maintainers
+   Default backend module
 
 The module provides an overview for all storages currently sorted by UID and their configured quota settings [2].
 

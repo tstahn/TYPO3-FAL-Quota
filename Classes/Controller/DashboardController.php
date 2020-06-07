@@ -12,6 +12,7 @@ namespace Mehrwert\FalQuota\Controller;
 use Mehrwert\FalQuota\Utility\QuotaUtility;
 use TYPO3\CMS\Backend\Template\Components\ButtonBar;
 use TYPO3\CMS\Backend\View\BackendTemplateView;
+use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
 use TYPO3\CMS\Core\Resource\StorageRepository;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
@@ -95,7 +96,12 @@ class DashboardController extends ActionController
      */
     public function indexAction(): void
     {
-        $storages = GeneralUtility::makeInstance(StorageRepository::class)->findAll();
+        // TYPO3 admin user gets all storages
+        if ($this->getBackendUser()->isAdmin() === true) {
+            $storages = GeneralUtility::makeInstance(StorageRepository::class)->findAll();
+        } else {
+            $storages = $this->getBackendUser()->getFileStorages();
+        }
         $aggregatedStorages = [];
 
         if (!empty($storages)) {
@@ -105,5 +111,15 @@ class DashboardController extends ActionController
             asort($aggregatedStorages);
         }
         $this->view->assign('storages', $aggregatedStorages);
+    }
+
+    /**
+     * Returns the current BE user.
+     *
+     * @return BackendUserAuthentication
+     */
+    protected function getBackendUser(): BackendUserAuthentication
+    {
+        return $GLOBALS['BE_USER'];
     }
 }

@@ -20,6 +20,13 @@ The following is an overview of the changes in this extension. For more details 
       Release Description
 
  - :Version:
+      1.5.0
+   :Date:
+      2020-06-07
+   :Changes:
+      [!!!] Make FAL Quota module available in FILE section and allow access for users and groups
+
+ - :Version:
       1.4.0
    :Date:
       2020-05-30

@@ -10,14 +10,14 @@ call_user_func(
             // Add submodule `falquota`
             \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerModule(
                 'Mehrwert.FalQuota',
-                'tools',
+                'file',
                 'falquota',
                 'bottom',
                 [
                     'Dashboard' => 'index',
                 ],
                 [
-                    'access' => 'systemMaintainer',
+                    'access' => 'user,group',
                     'icon' => 'EXT:' . $extKey . '/Resources/Public/Images/Icons/module-icon.svg',
                     'labels' => 'LLL:EXT:' . $extKey . '/Resources/Private/Language/locallang_mod.xlf',
                     'navigationComponentId' => '',
