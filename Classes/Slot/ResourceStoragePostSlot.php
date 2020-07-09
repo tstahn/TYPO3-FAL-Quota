@@ -142,4 +142,14 @@ class ResourceStoragePostSlot extends AbstractResourceStorageSlot
     {
         $this->updateQuotaByFolder($folder);
     }
+
+    /**
+     * Slot will be called after a folder is renamed. Update quota values.
+     *
+     * @param Folder $folder
+     */
+    public function postFolderRename(Folder $folder): void
+    {
+        $this->updateQuotaByFolder($folder);
+    }
 }
