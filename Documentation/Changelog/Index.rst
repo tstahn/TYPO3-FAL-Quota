@@ -20,6 +20,13 @@ The following is an overview of the changes in this extension. For more details 
       Release Description
 
  - :Version:
+      1.5.2
+   :Date:
+      2021-01-15
+   :Changes:
+      Add missing Slot postFolderRename()
+
+ - :Version:
       1.5.1
    :Date:
       2020-07-09

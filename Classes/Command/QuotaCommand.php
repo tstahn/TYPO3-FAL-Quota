@@ -98,11 +98,12 @@ final class QuotaCommand extends Command
             'quota_warning_threshold' => (int)$storage->getStorageRecord()['quota_warning_threshold'],
             'quota_warning_recipients' => $storage->getStorageRecord()['quota_warning_recipients'],
         ];
-        if ($quotaConfiguration['soft_quota'] > 0 &&
-            $quotaConfiguration['quota_warning_threshold'] > 0 &&
-            $quotaConfiguration['current_usage'] > $quotaConfiguration['soft_quota']) {
+        if ($quotaConfiguration['soft_quota'] > 0 && $quotaConfiguration['quota_warning_threshold'] > 0) {
             $currentThreshold = (int)($quotaConfiguration['current_usage'] / $quotaConfiguration['soft_quota'] * 100);
-            if ($currentThreshold >= $quotaConfiguration['quota_warning_threshold'] && !empty($quotaConfiguration['quota_warning_recipients'])) {
+            if (($quotaConfiguration['current_usage'] > $quotaConfiguration['soft_quota']
+                    || $currentThreshold >= $quotaConfiguration['quota_warning_threshold'])
+                && !empty($quotaConfiguration['quota_warning_recipients'])
+            ) {
                 $this->sendNotification($storage, $quotaConfiguration, $currentThreshold);
             }
         }
