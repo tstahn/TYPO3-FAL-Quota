@@ -35,5 +35,10 @@
     "psr-4": {
       "Mehrwert\\FalQuota\\": "Classes/"
     }
+  },
+  "extra": {
+    "typo3/cms": {
+      "extension-key": "fal_quota"
+    }
   }
 }
