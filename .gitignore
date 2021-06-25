@@ -1,4 +1,7 @@
-/.ddev
+/.build
+/.ddev/*
+!/.ddev/config.yaml
+!/.ddev/docker-compose.env.yaml
 /.env
 /.idea
 /.php_cs.cache
@@ -6,7 +9,6 @@
 /.sass-cache
 /.tmp
 /.unison.*
-/.Build/*
 .DS_Store
 *GENERATED*
 *.css.map
