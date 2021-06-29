@@ -20,6 +20,7 @@ use TYPO3\CMS\Core\Resource\ResourceStorage;
 use TYPO3\CMS\Core\Resource\StorageRepository;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\VersionNumberUtility;
+use TYPO3\CMS\Extbase\SignalSlot\Dispatcher;
 
 /**
  * Quota notification and update class
@@ -81,6 +82,8 @@ final class QuotaCommand extends Command
                 $this->checkThreshold($storage, $currentUsage);
             }
         }
+
+        return 0;
     }
 
     /**
@@ -120,8 +123,24 @@ final class QuotaCommand extends Command
     private function sendNotification(ResourceStorage $storage, array $quotaConfiguration, int $currentThreshold): int
     {
         $hasRecipients = false;
-        $recipients = GeneralUtility::trimExplode(',', $quotaConfiguration['quota_warning_recipients'], true);
+        $warningRecipients = GeneralUtility::trimExplode(',', $quotaConfiguration['quota_warning_recipients'], true);
         $validRecipientAddresses = [];
+
+        $additionalRecipients = [];
+
+        /** @var Dispatcher $signalSlotDispatcher */
+        $signalSlotDispatcher = GeneralUtility::makeInstance(Dispatcher::class);
+        $signalArguments = $signalSlotDispatcher->dispatch(
+            __CLASS__,
+            'addAdditionalRecipients',
+            [
+                $storage,
+                $additionalRecipients,
+            ]
+        );
+        $additionalRecipients = array_pop($signalArguments);
+
+        $recipients = array_unique(array_merge($warningRecipients, $additionalRecipients));
 
         foreach ($recipients as $recipient) {
             if (GeneralUtility::validEmail($recipient)) {
