@@ -20,6 +20,7 @@ use TYPO3\CMS\Core\Resource\ResourceStorage;
 use TYPO3\CMS\Core\Resource\StorageRepository;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\VersionNumberUtility;
+use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 
 /**
  * Quota notification and update class
@@ -138,13 +139,27 @@ final class QuotaCommand extends Command
                 ? $GLOBALS['TYPO3_CONF_VARS']['MAIL']['defaultMailFromName']
                 : 'TYPO3 CMS';
 
-            $subject = 'Warning: Storage »' . $storage->getName() . '« (UID: '
-                . $storage->getUid() . ') approaching quota limit in \''
-                . $GLOBALS['TYPO3_CONF_VARS']['SYS']['sitename'] . '\'';
-            $body = 'Warning: Storage »' . $storage->getName() . '« (UID: ' . $storage->getUid()
-                . ') is approaching the configured quota limit of ' . QuotaUtility::numberFormat($quotaConfiguration['soft_quota'], 'MB')
-                . ' in \'' . $GLOBALS['TYPO3_CONF_VARS']['SYS']['sitename'] . '\' currently using '
-                . QuotaUtility::numberFormat($quotaConfiguration['current_usage'], 'MB') . ' (' . $currentThreshold . ' %) of allocated storage.';
+            $subject = LocalizationUtility::translate(
+                'email.subject',
+                'FalQuota',
+                [
+                    $storage->getName(),
+                    $storage->getUid(),
+                    $GLOBALS['TYPO3_CONF_VARS']['SYS']['sitename'],
+                ]
+            );
+            $body = LocalizationUtility::translate(
+                'email.body',
+                'FalQuota',
+                [
+                    $storage->getName(),
+                    $storage->getUid(),
+                    QuotaUtility::numberFormat($quotaConfiguration['soft_quota'], 'MB'),
+                    $GLOBALS['TYPO3_CONF_VARS']['SYS']['sitename'],
+                    QuotaUtility::numberFormat($quotaConfiguration['current_usage'], 'MB'),
+                    $currentThreshold . '%',
+                ]
+            );
 
             // v10: Use Symfony Mail compatible method
             if (VersionNumberUtility::convertVersionNumberToInteger(TYPO3_version) >= 10000000) {

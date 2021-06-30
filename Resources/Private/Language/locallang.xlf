@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file source-language="en" datatype="plaintext" original="EXT:fal_quota/Resources/Private/Language/locallang.xlf" date="2021-06-30T12:06:09Z">
+        <header/>
+        <body>
+            <trans-unit id="email.subject" xml:space="preserve">
+                <source>Warning: Storage »%1$s« (UID: %2$s) approaching quota limit in '%3$s'</source>
+            </trans-unit>
+            <trans-unit id="email.body" xml:space="preserve">
+                <source>
+                    Warning: Storage »%1$s« (UID: %2$s) is approaching the configured quota limit of %3$s
+                    in '%4$s' currently using %5$s (%6$s) of allocated storage.
+                </source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
